@@ -2,26 +2,46 @@ package objects;
 
 import java.util.concurrent.Semaphore;
 
-/**
- * Created by Kasun on 12/29/2015.
- */
 public class Bus implements Runnable {
+    private int id;
     private static Semaphore mutex;
-    private static Semaphore bus;
+    private static Semaphore waitForBus;
+    private static Semaphore leaveBus;
 
-    public Bus(Semaphore mutex, Semaphore bus) {
-        this.mutex = mutex;
-        this.bus = bus;
+    private BusHalt busHalt;
+
+    public Bus(int id, BusHalt busHalt, Semaphore busMutex, Semaphore waitForBus, Semaphore leaveBus) {
+        this.id = id;
+        this.busHalt = busHalt;
+        this.mutex = busMutex;
+        this.waitForBus = waitForBus;
+        this.leaveBus = leaveBus;
     }
 
     @Override
     public void run() {
-        //Arrive to bus stop
-        //Notify
-        //Depart if all the riders have boarded or bus is full
+        try
+        {
+            mutex.acquire();
+            if (busHalt.getWaitingRiderCount() > 0)
+            {
+                waitForBus.release();
+                leaveBus.acquire();
+            }
+            mutex.release();
+            depart();
+        } catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    public int getID() {
+        return id;
     }
 
     private void depart() {
-        System.out.println("objects.Bus departed");
+        System.out.println(getID() + " Bus departed");
     }
 }
