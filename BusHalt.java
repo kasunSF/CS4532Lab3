@@ -1,3 +1,6 @@
+/**
+ * This class simulates a BusHalt.
+ */
 public class BusHalt {
     private int waitingRiderCount;
     private int boardedRiderCount;

@@ -6,9 +6,12 @@ import java.util.concurrent.Semaphore;
  * This is the Main class which does the simulation. This holds 4 variables to
  * control synchronization.
  *
- * busMutex     ensures that only one bus is in the halt and signals when leaving.
- * riderMutex   ensures atomic increment of waiting count.
- * waitForBus   //
+ * busMutex     Ensures that only one bus is in the halt and signals when leaving.
+ * riderMutex   Ensures atomic increment of waiting count.
+ * waitForBus   Riders will wait on this mutex when they are in the halt. Initially
+ *              the bus will signal riders by releasing the waitForBus mutex. Then
+ *              the riders acquire the mutex one by one, get in the bus and then
+ *              releases.
  * leavesBus    Bus has to acquire leavesBus to leave from the halt. This will be
  *              released when riders are boarded.
  *
@@ -25,12 +28,12 @@ public class Simulation {
      * Fixed size thread pool is initialized for both rider threads and bus threads to
       * overcome the OutOfMemoryError when the input size is large.
      */
-    private static ExecutorService riderExecutor = Executors.newFixedThreadPool(80);
-    private static ExecutorService busExecutor = Executors.newFixedThreadPool(2);
+    private static ExecutorService riderExecutor = Executors.newFixedThreadPool(1000);
+    private static ExecutorService busExecutor = Executors.newFixedThreadPool(400);
 
     public static void main(String[] args) throws InterruptedException {
-        int noRiders = 10;
-        int nuBuses = 1;
+        int noRiders = 14300;
+        int nuBuses = 386;
 
         try {
             if(args.length == 2) {
