@@ -12,6 +12,9 @@ public class Bus implements Runnable {
         mutex and leave. If there are riders waiting, bus acquires the riderMutex and releases the
         waitForBus mutex. Then the bus waits on leaveBus mutex. Then the bus releases the riderMutex
         and the busMutex and departs.
+
+        The bus acquiring the riderMutex will guarantee that only the riders who were waiting before
+        the bus arrives gets the chance to board. Others have to wait for the next ride.
      */
     @Override
     public void run() {
