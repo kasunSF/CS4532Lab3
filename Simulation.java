@@ -26,7 +26,7 @@ public class Simulation {
 
     /*
      * Fixed size thread pool is initialized for both rider threads and bus threads to
-      * overcome the OutOfMemoryError when the input size is large.
+     * overcome the OutOfMemoryError when the input size is large.
      */
     private static ExecutorService riderExecutor = Executors.newFixedThreadPool(1000);
     private static ExecutorService busExecutor = Executors.newFixedThreadPool(400);
@@ -72,7 +72,7 @@ public class Simulation {
 
     /**
      * Creates new bus threads and execute.
-     * @param amount number of riders to generate
+     * @param amount number of buses to generate
      */
     public static void buildBuses(int amount) {
         for (int i = 0; i < amount; ++i) {
