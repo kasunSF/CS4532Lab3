@@ -22,7 +22,6 @@ public class Bus implements Runnable {
     }
 
     private void depart() {
-        System.out.println(this.id + " Bus departed with " + Simulation.busHalt.getBoardedRiderCount() + " riders.");
-        System.out.println(Simulation.busHalt.getWaitingRiderCount() + " riders are waiting in the halt.");
+        System.out.println(this.id + " Bus departed.");
     }
 }

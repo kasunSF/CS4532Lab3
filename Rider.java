@@ -1,3 +1,6 @@
+/**
+ * This class simulates a Rider.
+ */
 public class Rider implements Runnable {
     private int id;
 
@@ -5,6 +8,13 @@ public class Rider implements Runnable {
         this.id = id;
     }
 
+    /*
+        When the rider arrives at the bus stop, he acquire the rider mutex, then increment the waiting
+        rider count and then release the mutex. Then the writers are waiting on the waitForBus and once
+        the bus signals who are waiting on the waitForBus, rider acquires the waitForBus and gets in to
+        the bus. If the bus is filled or there's no one waiting in the halt, rider release the leaveBus
+        mutex.
+     */
     @Override
     public void run() {
         try {
