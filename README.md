@@ -15,16 +15,16 @@ javac Simulation.java Bus.java BusHalt.java Rider.java
 
 `number_of_riders` = Integer value that denotes number of riders.
 
-`number_of_buses` = Integer value that denotes number of buses.
-
 e.g
 
-`java Simulation 10000 500`
+`java Simulation 10000`
 
-Above execution will generate 10000 riders and 500 buses. If command line arguments
-are not provided, riders and buses will be initialized to default values which are
-14300 and 386 respectively.
+Above execution will generate 10000 riders. If command line arguments are not provided, 
+riders will be initialized to default value which is 14300.
 
 `java Simulation`
 
-Above execution will initialize the riders and buses to default values.
+Above execution will initialize the riders to the default value.
+
+The code will generate buses and riders randomly and the buses will be generated until
+all the riders are finished. This ensures that the termination of the programme.
