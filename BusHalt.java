@@ -1,5 +1,3 @@
-package objects;
-
 public class BusHalt {
     private int waitingRiderCount;
     private int boardedRiderCount;
@@ -18,7 +16,7 @@ public class BusHalt {
         ++boardedRiderCount;
     }
 
-    public synchronized void clear() {
+    public synchronized void clearBoardedCount() {
         boardedRiderCount = 0;
     }
 
