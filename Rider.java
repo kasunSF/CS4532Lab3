@@ -22,15 +22,15 @@ public class Rider implements Runnable {
         {
             Simulation.riderMutex.acquire();
             Simulation.busHalt.waitingRider();
-            System.out.println("Riders Waiting: " + Simulation.busHalt.getWaitingRiderCount());
+            //System.out.println("Riders Waiting: " + Simulation.busHalt.getWaitingRiderCount());
             Simulation.riderMutex.release();
 
             Simulation.waitForBus.acquire();
             board();
             if (Simulation.busHalt.getWaitingRiderCount() == 0 || Simulation.busHalt.getBoardedRiderCount() == 50)
             {
-                System.out.println("----------------------Riders Waiting: " + Simulation.busHalt.getWaitingRiderCount());
-                System.out.println("----------------------Riders Boarded: " + Simulation.busHalt.getBoardedRiderCount());
+                System.out.println("---------------------- Riders Waiting: " + Simulation.busHalt.getWaitingRiderCount());
+                System.out.println("---------------------- Riders Boarded: " + Simulation.busHalt.getBoardedRiderCount());
                 Simulation.busHalt.clearBoardedCount();
                 Simulation.leaveBus.release();
             }
